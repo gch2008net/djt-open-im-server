@@ -11,11 +11,10 @@ afterUpdateUserInfoEx:
   enable:  false
   timeout: 5
 afterSendSingleMsg:
-  enable: false
+  enable: true
   timeout: 5
   # Only the senID/recvID specified in attentionIds will send the callback
   # if not set, all user messages will be callback
-  attentionIds: []
 beforeSendGroupMsg:
   enable: false
   timeout: 5
@@ -37,7 +36,7 @@ afterUserKickOff:
   enable: false
   timeout: 5
 beforeOfflinePush:
-  enable: true
+  enable: false
   timeout: 5
   failedContinue: true
 beforeOnlinePush:
