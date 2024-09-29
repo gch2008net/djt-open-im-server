@@ -1,4 +1,4 @@
-url: "webhook://127.0.0.1:10008/callbackExample"
+url: "http://192.168.8.110:8080/OpenIMNotify"
 beforeSendSingleMsg:
   enable: false
   timeout: 5
@@ -37,7 +37,7 @@ afterUserKickOff:
   enable: false
   timeout: 5
 beforeOfflinePush:
-  enable: false
+  enable: true
   timeout: 5
   failedContinue: true
 beforeOnlinePush:
