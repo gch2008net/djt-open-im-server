@@ -16,6 +16,7 @@ import (
 func main() {
 	fmt.Println("mian.................11111111111111")
 	mageutil.InitForSSC()
+	// BuildAndStartAndStopSingleCmd()
 	BuildLinux()
 	// mageutil.Build()
 	// mageutil.StartToolsAndServices()
@@ -73,16 +74,22 @@ func BuildLinux() {
 	mageutil.PrintGreen("All binaries under cmd and tools were successfully compiled.")
 }
 
-func BuildSingleCmd(dirFix string, filename string) (string, string, error) {
+func BuildSingleCmd(dirFix string, filename string, target string) (string, string, error) {
 
 	mageutil.PrintGreen("start BuildSingleCmd ...")
 
 	//env
 	targetOS, targetArch := runtime.GOOS, runtime.GOARCH
+	_output_bin := "_output_bin/windows"
+	if target == "linux" {
+		targetOS = "linux"
+		targetArch = "amd64"
+		_output_bin = "_output_bin/linux"
+	}
 
 	//outdir
 	//build后的输出路径
-	outputDir := filepath.Join(dirFix, "_output_bin")
+	outputDir := filepath.Join(dirFix, _output_bin)
 
 	//create dir
 	if err := os.MkdirAll(outputDir, 0755); err != nil {
@@ -90,7 +97,10 @@ func BuildSingleCmd(dirFix string, filename string) (string, string, error) {
 		return "", "", err
 	}
 
-	outputFileName := filename + ".exe"
+	outputFileName := filename
+	if targetOS == "windows" {
+		outputFileName += ".exe"
+	}
 
 	dir := filepath.Join(dirFix, "cmd", filename)
 
@@ -133,19 +143,19 @@ func BuildAndStartAndStopSingleCmd() {
 	mageutil.InitForSSC()
 
 	//项目路径
-	var dirFix string = "D:\\OpenIM\\open-im-server"
+	var dirFix string = "D:\\OpenIM\\v3.8.0\\open-im-server"
 
 	//模块名称
-	var filename string = "openim-api"
+	// var filename string = "openim-api"
 	// var filename string =  "openim-cmdutils"
 	// var filename string =  "openim-crontask"
 	// var filename string =  "openim-msggateway"
 	// var filename string =  "openim-msgtransfer"
-	// var filename string =  "openim-push"
+	var filename string = "openim-push"
 	// var filename string =  "openim-rpc"
 
 	//单独build某个模块
-	outputDir, outputFileName, err := BuildSingleCmd(dirFix, filename)
+	outputDir, outputFileName, err := BuildSingleCmd(dirFix, filename, "linux")
 	if err != nil {
 		fmt.Printf("err:%v\n", err)
 	}
