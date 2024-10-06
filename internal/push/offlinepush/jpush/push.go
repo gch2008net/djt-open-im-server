@@ -18,6 +18,7 @@ import (
 	"context"
 	"encoding/base64"
 	"fmt"
+
 	"github.com/openimsdk/open-im-server/v3/internal/push/offlinepush/options"
 
 	"github.com/openimsdk/open-im-server/v3/internal/push/offlinepush/jpush/body"
@@ -52,6 +53,9 @@ func (j *JPush) getAuthorization(appKey string, masterSecret string) string {
 }
 
 func (j *JPush) Push(ctx context.Context, userIDs []string, title, content string, opts *options.Opts) error {
+
+	title = "您有一条新消息"
+	content = "您有一条新消息"
 	var pf body.Platform
 	pf.SetAll()
 	var au body.Audience

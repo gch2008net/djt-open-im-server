@@ -16,7 +16,7 @@ import (
 func main() {
 	fmt.Println("mian.................11111111111111")
 	mageutil.InitForSSC()
-	// BuildAndStartAndStopSingleCmd()
+	BuildAndStartAndStopSingleCmd()
 	BuildLinux()
 	// mageutil.Build()
 	// mageutil.StartToolsAndServices()
