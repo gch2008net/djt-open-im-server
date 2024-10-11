@@ -15,9 +15,30 @@
 package body
 
 type Options struct {
-	ApnsProduction bool `json:"apns_production"`
+	ApnsProduction    bool              `json:"apns_production"`
+	ThirdPartyChannel ThirdPartyChannel `json:"third_party_channel"`
+}
+
+type ThirdPartyChannel struct {
+	Vivo   Vivo   `json:"vivo,omitempty"`
+	Xiaomi Xiaomi `json:"xiaomi,omitempty"`
+}
+
+type Vivo struct {
+	Classification int `json:"classification"`
+}
+
+type Xiaomi struct {
+	Channel_id string `json:"channel_id"`
+	Skip_quota bool   `json:"skip_quota"`
 }
 
 func (o *Options) SetApnsProduction(c bool) {
 	o.ApnsProduction = c
+}
+
+func (o *Options) SetThirdPartyChannel() {
+	o.ThirdPartyChannel.Vivo.Classification = 1
+	o.ThirdPartyChannel.Xiaomi.Channel_id = "127711"
+	o.ThirdPartyChannel.Xiaomi.Skip_quota = true
 }

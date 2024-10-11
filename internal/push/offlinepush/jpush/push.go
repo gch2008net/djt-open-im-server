@@ -74,6 +74,8 @@ func (j *JPush) Push(ctx context.Context, userIDs []string, title, content strin
 	msg.SetMsgContent(content)
 	var opt body.Options
 	opt.SetApnsProduction(j.pushConf.IOSPush.Production)
+	opt.SetThirdPartyChannel() //设置离线推送
+
 	var pushObj body.PushObj
 	pushObj.SetPlatform(&pf)
 	pushObj.SetAudience(&au)
