@@ -179,13 +179,13 @@ func (s *friendServer) ImportFriends(ctx context.Context, req *relation.ImportFr
 	if err := s.db.BecomeFriends(ctx, req.OwnerUserID, req.FriendUserIDs, constant.BecomeFriendByImport); err != nil {
 		return nil, err
 	}
-	for _, userID := range req.FriendUserIDs {
-		s.notificationSender.FriendApplicationAgreedNotification(ctx, &relation.RespondFriendApplyReq{
-			FromUserID:   req.OwnerUserID,
-			ToUserID:     userID,
-			HandleResult: constant.FriendResponseAgree,
-		})
-	}
+	// for _, userID := range req.FriendUserIDs {
+	// 	s.notificationSender.FriendApplicationAgreedNotification(ctx, &relation.RespondFriendApplyReq{
+	// 		FromUserID:   req.OwnerUserID,
+	// 		ToUserID:     userID,
+	// 		HandleResult: constant.FriendResponseAgree,
+	// 	})
+	// }
 
 	s.webhookAfterImportFriends(ctx, &s.config.WebhooksConfig.AfterImportFriends, req)
 	return &relation.ImportFriendResp{}, nil

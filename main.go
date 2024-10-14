@@ -151,7 +151,7 @@ func BuildAndStartAndStopSingleCmd() {
 	// var filename string =  "openim-crontask"
 	// var filename string =  "openim-msggateway"
 	// var filename string =  "openim-msgtransfer"
-	var filename string = "openim-push"
+	var filename string = "openim-rpc\\openim-rpc-friend"
 	// var filename string =  "openim-rpc"
 
 	//单独build某个模块
