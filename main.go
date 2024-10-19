@@ -169,4 +169,5 @@ func BuildAndStartAndStopSingleCmd() {
 	path := filepath.Join(outputDir, outputFileName)
 	var binaryPaths []string = []string{path}
 	mageutil.BatchKillExistBinaries(binaryPaths)
+
 }
