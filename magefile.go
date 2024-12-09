@@ -26,6 +26,7 @@ func Start() {
 
 func Stop() {
 	mageutil.StopAndCheckBinaries()
+	//test magefile.go
 }
 
 func Check() {
